@@ -49,17 +49,17 @@ jobs:
           echo `date +"%Y-%m-%d %H:%M:%S"` begin > time.log
           echo "列出文件(此处不展示)"
           rclone lsf e5:/ > "lsf.log"
-          rclone mkdir e5:/E5-Rclone-Actions-Repo/
-          rclone move lsf.log e5:/E5-Rclone-Actions-Repo/
-          rclone delete e5:/E5-Rclone-Actions-Repo/lsf.log
-          rclone rmdir e5:/E5-Rclone-Actions-Repo/
+          rclone mkdir e5:/PrivateRepo/
+          rclone move lsf.log e5:/PrivateRepo/
+          rclone delete e5:/PrivateRepo/lsf.log
+          rclone rmdir e5:/PrivateRepo/
       - name: Zip config #打包配置文件
         run: zip -P ${{ secrets.PASSWD }} rclone.zip -j ~/.config/rclone/rclone.conf
 
       - name: Commit config #提交配置文件
         run: |
-         git config --global user.email "office@chirmyram.top"
-         git config --global user.name "ChirmyRam"
+         git config --global user.email "jiuxiastudio@126.com"
+         git config --global user.name "jx126"
          git add .
          git commit -am "new rclone config"
          git push
